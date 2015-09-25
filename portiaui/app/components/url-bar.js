@@ -26,7 +26,11 @@ export default Ember.Component.extend({
 
     submit() {
         var browser = this.get('browser');
-        browser.go(this.get('url'));
+        if (this.get('urlChanged')) {
+            browser.go(this.get('url'));
+        } else {
+            browser.reload();
+        }
         return false;
     },
 
